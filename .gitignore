@@ -1,0 +1,121 @@
+## IDE and editors
+
+# Jetbrains
+.idea/
+!.idea/codeStyles/
+!.idea/runConfigurations/
+!.idea/inspectionProfiles/
+!.idea/modules.xml
+!.idea/vcs.xml
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.iws
+
+### Node.js
+
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Monorepo Tools
+/.turbo/
+.turbo/
+.cache/
+.nx/
+lerna.json
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Build Output
+dist/
+build/
+.next/
+out/
+.swc/
+.esbuild/
+public/build/
+
+# Temp & Cache
+.tmp/
+.temp/
+.jest/
+.jest-cache/
+.nyc_output/
+coverage/
+
+# Misc
+*.tgz
+*.bak
+*.old
+*.orig
+*.rej
+*.swo
+*.tmp
+*.patch
+*.log.*
+*.pem
+
+### Containerization
+
+# Docker
+.docker/
+*.tar
+*.img
+**/docker-data/
+**/data-volume/
+**/.dockerignore
+
+### Others
+
+# OS-specific
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Markdown
+*.md
+!README.md
+
+# vercel
+.vercel

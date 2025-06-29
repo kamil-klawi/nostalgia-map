@@ -1,0 +1,55 @@
+# Node modules and build output
+node_modules/
+.next/
+dist/
+build/
+out/
+
+# Cache and temp
+.cache/
+.tmp/
+.temp/
+.jest/
+.jest-cache/
+coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Images and binaries
+*.png
+*.jpg
+*.svg
+*.gif
+*.ico
+
+# Docker related
+.docker/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Misc
+*.tgz
+*.bak
+*.old
+*.orig
+*.rej
+*.swo
+*.tmp
+*.patch
+
+# Editor folders
+.vscode/
+.idea/
