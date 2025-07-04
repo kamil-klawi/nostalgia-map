@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Memory } from "../../memories/entity/memory.entity";
 
 @Entity()
 export class User {
@@ -25,6 +26,9 @@ export class User {
 
     @Column({ type: 'boolean', default: false })
     isVerified: boolean;
+
+    @OneToMany(() => Memory, memory => memory.user)
+    memories: Memory[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;

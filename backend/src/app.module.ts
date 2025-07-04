@@ -3,9 +3,16 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { cwd } from "node:process";
 import { TypeOrmModule } from "@nestjs/typeorm";
+
+// Modules
 import { UsersModule } from './users/users.module';
-import { User } from "./users/entity/user.entity";
 import { AuthModule } from './auth/auth.module';
+import { MemoriesModule } from './memories/memories.module';
+
+// Entities
+import { User } from "./users/entity/user.entity";
+import { Memory } from "./memories/entity/memory.entity";
+import { Category } from "./memories/entity/category.entity";
 
 @Module({
   imports: [
@@ -24,12 +31,13 @@ import { AuthModule } from './auth/auth.module';
           username: config.get<string>('DB_USER', 'postgres'),
           password: config.get<string>('DB_PASS', 'postgres'),
           database: config.get<string>('DB_NAME', 'nostalgiamapdb'),
-          entities: [User],
+          entities: [User, Memory, Category],
           synchronize: true,
         }),
       }),
       UsersModule,
-      AuthModule
+      AuthModule,
+      MemoriesModule,
   ],
 })
 export class AppModule {}

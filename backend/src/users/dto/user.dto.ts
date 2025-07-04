@@ -1,4 +1,5 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose, Type } from "class-transformer";
+import { MemoryDto } from "../../memories/dto/memory.dto";
 
 export class UserDto {
     @Expose()
@@ -24,6 +25,10 @@ export class UserDto {
 
     @Expose()
     isVerified: boolean;
+
+    @Expose()
+    @Type(() => MemoryDto)
+    memories?: MemoryDto[] = [];
 
     @Expose()
     createdAt: Date;
