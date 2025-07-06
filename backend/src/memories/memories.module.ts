@@ -2,7 +2,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { MemoriesService } from './memories.service';
 import { MemoriesController } from './memories.controller';
-import { Category } from "./entity/category.entity";
+import { Category } from "../categories/entity/category.entity";
 import { Memory } from "./entity/memory.entity";
 import { UsersModule } from "../users/users.module";
 import { Reaction } from "./entity/reaction.entity";

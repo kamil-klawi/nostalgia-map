@@ -5,7 +5,7 @@ import { plainToInstance } from "class-transformer";
 import { CreateMemoryDto } from "./dto/create-memory.dto";
 import { Memory } from "./entity/memory.entity";
 import { UsersService } from "../users/users.service";
-import { Category } from "./entity/category.entity";
+import { Category } from "../categories/entity/category.entity";
 import { UpdateMemoryDto } from "./dto/update-memory.dto";
 import { MemoryDto } from "./dto/memory.dto";
 import { Reaction } from "./entity/reaction.entity";
@@ -30,10 +30,11 @@ export class MemoriesService {
         const memoryData: DeepPartial<Memory> = {...createMemoryDto, user};
         if (createMemoryDto.categoryId) {
             const category: Category | null = await this.categoryRepository.findOne({ where: {id: createMemoryDto.categoryId} });
-
-            if (category) {
-                memoryData.category = category;
+            if (!category) {
+                throw new NotFoundException('Category not found');
             }
+
+            memoryData.category = category;
         }
 
         const memory = this.memoryRepository.create(memoryData);
@@ -57,10 +58,11 @@ export class MemoriesService {
 
         if (updateMemoryDto.categoryId) {
             const category: Category | null = await this.categoryRepository.findOne({ where: {id: updateMemoryDto.categoryId} });
-
-            if (category) {
-                memory.category = category;
+            if (!category) {
+                throw new NotFoundException('Category not found');
             }
+
+            memory.category = category;
         }
 
         const { categoryId, ...fieldsToUpdate } = updateMemoryDto;
