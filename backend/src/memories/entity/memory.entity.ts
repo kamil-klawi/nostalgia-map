@@ -7,7 +7,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
-import { Category } from "./category.entity";
+import { Category } from "../../categories/entity/category.entity";
 import { User } from "../../users/entity/user.entity";
 import { Reaction } from "./reaction.entity";
 
