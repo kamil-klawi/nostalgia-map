@@ -1,6 +1,15 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
 import { Category } from "./category.entity";
 import { User } from "../../users/entity/user.entity";
+import { Reaction } from "./reaction.entity";
 
 @Entity()
 export class Memory {
@@ -27,6 +36,9 @@ export class Memory {
 
     @Column({ type: 'jsonb', nullable: true })
     photoUrl?: string[];
+
+    @OneToMany(() => Reaction, reaction => reaction.memory)
+    reactions: Reaction[];
 
     @ManyToOne(() => Category, category => category.memories, { nullable: true })
     category?: Category;
