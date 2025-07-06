@@ -8,12 +8,16 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MemoriesModule } from './memories/memories.module';
+import { CategoriesModule } from './categories/categories.module';
 
 // Entities
 import { User } from "./users/entity/user.entity";
 import { Memory } from "./memories/entity/memory.entity";
-import { Category } from "./memories/entity/category.entity";
+import { Category } from "./categories/entity/category.entity";
 import { Reaction } from "./memories/entity/reaction.entity";
+
+// Services
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -39,6 +43,8 @@ import { Reaction } from "./memories/entity/reaction.entity";
       UsersModule,
       AuthModule,
       MemoriesModule,
+      CategoriesModule,
   ],
+  providers: [AppService],
 })
 export class AppModule {}
