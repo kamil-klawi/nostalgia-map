@@ -39,4 +39,18 @@ export class MemoriesController {
     async getMemory(@Param('id') memoryId: number): Promise<MemoryDto> {
         return await this.memoriesService.getMemory(memoryId);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post(':id/like')
+    async likeMemory(@Param('id') memoryId: number, @Req() req): Promise<void> {
+        const user = req.user;
+        return await this.memoriesService.likeMemory(memoryId, user);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete(':id/like')
+    async unlikeMemory(@Param('id') memoryId: number, @Req() req): Promise<void> {
+        const userId = req.user.id;
+        return await this.memoriesService.unlikeMemory(memoryId, userId);
+    }
 }

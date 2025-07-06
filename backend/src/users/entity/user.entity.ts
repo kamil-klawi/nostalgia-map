@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Memory } from "../../memories/entity/memory.entity";
+import { Reaction } from "../../memories/entity/reaction.entity";
 
 @Entity()
 export class User {
@@ -29,6 +30,9 @@ export class User {
 
     @OneToMany(() => Memory, memory => memory.user)
     memories: Memory[];
+
+    @OneToMany(() => Reaction, reaction => reaction.user)
+    reactions: Reaction[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;

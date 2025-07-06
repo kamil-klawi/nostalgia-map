@@ -26,6 +26,10 @@ export class MemoryDto {
     photoUrl?: string[];
 
     @Expose()
+    @Transform(({ obj }) => obj.reactions?.length ?? 0)
+    likeCount: number;
+
+    @Expose()
     @Transform(({ obj }) => obj.category?.id)
     categoryId?: number;
 
@@ -35,7 +39,7 @@ export class MemoryDto {
 
     @Expose()
     @Transform(({ obj }) =>
-        `${obj.user.firstName} ${obj.user.lastName}`.trim()
+        obj.user ? `${obj.user.firstName} ${obj.user.lastName}`.trim() : ''
     )
     userFullName: string;
 

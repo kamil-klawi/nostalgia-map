@@ -13,6 +13,7 @@ import { MemoriesModule } from './memories/memories.module';
 import { User } from "./users/entity/user.entity";
 import { Memory } from "./memories/entity/memory.entity";
 import { Category } from "./memories/entity/category.entity";
+import { Reaction } from "./memories/entity/reaction.entity";
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { Category } from "./memories/entity/category.entity";
           username: config.get<string>('DB_USER', 'postgres'),
           password: config.get<string>('DB_PASS', 'postgres'),
           database: config.get<string>('DB_NAME', 'nostalgiamapdb'),
-          entities: [User, Memory, Category],
+          entities: [User, Memory, Category, Reaction],
           synchronize: true,
         }),
       }),

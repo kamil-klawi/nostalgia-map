@@ -1,4 +1,4 @@
-import {ForbiddenException, Injectable, Logger, NotFoundException} from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeepPartial, Repository } from "typeorm";
 import { plainToInstance } from "class-transformer";
@@ -8,12 +8,15 @@ import { UsersService } from "../users/users.service";
 import { Category } from "./entity/category.entity";
 import { UpdateMemoryDto } from "./dto/update-memory.dto";
 import { MemoryDto } from "./dto/memory.dto";
+import { Reaction } from "./entity/reaction.entity";
+import { User } from "../users/entity/user.entity";
 
 @Injectable()
 export class MemoriesService {
     constructor(
         @InjectRepository(Category) private readonly categoryRepository: Repository<Category>,
         @InjectRepository(Memory) private readonly memoryRepository: Repository<Memory>,
+        @InjectRepository(Reaction) private readonly reactionRepository: Repository<Reaction>,
         private readonly usersService: UsersService,
     ) {}
     private readonly logger = new Logger(MemoriesService.name, { timestamp: true });
@@ -86,14 +89,14 @@ export class MemoriesService {
     }
 
     async getAllMemories(): Promise<MemoryDto[]> {
-        const memories: Memory[] = await this.memoryRepository.find({ relations: ['user', 'category'] });
+        const memories: Memory[] = await this.memoryRepository.find({ relations: ['user', 'category', 'reactions'] });
         return plainToInstance(MemoryDto, memories, {
             excludeExtraneousValues: true,
         });
     }
 
     async getMemory(memoryId: number): Promise<MemoryDto> {
-        const memory: Memory | null = await this.memoryRepository.findOne({ where: {id: memoryId}, relations: ['user', 'category'] });
+        const memory: Memory | null = await this.memoryRepository.findOne({ where: {id: memoryId}, relations: ['user', 'category', 'reactions'] });
         if (!memory) {
             throw new NotFoundException("Memory not found");
         }
@@ -105,10 +108,42 @@ export class MemoriesService {
     }
 
     async getMemoriesByUser(userId: number): Promise<MemoryDto[]> {
-        const memories: Memory[] = await this.memoryRepository.find({ where: {user:{id: userId}}, relations: ['user', 'category'] });
+        const memories: Memory[] = await this.memoryRepository.find({ where: {user:{id: userId}}, relations: ['user', 'category', 'reactions'] });
 
         return memories.map(memory => plainToInstance(MemoryDto, memory, {
             excludeExtraneousValues: true,
         }));
+    }
+
+    async likeMemory(memoryId: number, user: User): Promise<void> {
+        const memory: Memory | null = await this.memoryRepository.findOne({ where: {id: memoryId}, relations: ['user', 'category', 'reactions'] });
+        if (!memory) {
+            throw new NotFoundException("Memory not found");
+        }
+
+        const existingReaction = await this.reactionRepository.findOne({ where: {memory, user} });
+        if (existingReaction) {
+            throw new BadRequestException("You already liked the memory");
+        }
+
+        const reaction = this.reactionRepository.create({memory, user});
+        this.logger.log('Add reaction');
+        await this.reactionRepository.save(reaction);
+    }
+
+    async unlikeMemory(memoryId: number, userId: number): Promise<void> {
+        const memory: Memory | null = await this.memoryRepository.findOne({ where: {id: memoryId}, relations: ['user', 'category', 'reactions'] });
+        if (!memory) {
+            throw new NotFoundException("Memory not found");
+        }
+
+        const existingReaction: Reaction | null = await this.reactionRepository.findOne({ where: {memory: {id: memoryId}, user: {id: userId}}, relations: ['memory', 'user'] });
+        this.logger.log(`${existingReaction}`);
+        if (!existingReaction) {
+            throw new BadRequestException("You have not liked this memory");
+        }
+
+        this.logger.log('Remove reaction');
+        await this.reactionRepository.remove(existingReaction);
     }
 }
