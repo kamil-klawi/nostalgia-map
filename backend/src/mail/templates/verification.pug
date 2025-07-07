@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='UTF-8')
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Email Verification
+        style.
+            body {
+                font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background-color: #f3f3f3;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 600px;
+                background-color: #f3f3f3;
+                margin: 40px auto;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                color: #333333;
+            }
+
+            h1 {
+                color: #1C1F33;
+                text-align: left;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            .code {
+                font-size: 36px;
+                letter-spacing: 10px;
+                font-weight: bold;
+                text-align: center;
+                background-color: #e8eef2;
+                color: #1C1F33;
+                padding: 15px;
+                border-radius: 6px;
+                margin: 30px 0;
+                user-select: all;
+            }
+
+            .footer {
+                font-size: 12px;
+                text-align: center;
+                color: #666370;
+                margin-top: 30px;
+            }
+    body
+        .container
+            h1 Email Verification
+            p Hello,
+            p
+                | Thank you for registering with NostalgiaMap. To complete your registration, please use the following verification code:
+            .code 100000
+            p
+                | This code will expire in 10 minutes. If you did not request this email, please ignore it.
+            p Cheers,<br/>
+                The NostalgiaMap Team
+            .footer
+                p This is an automated message, please do not reply.
