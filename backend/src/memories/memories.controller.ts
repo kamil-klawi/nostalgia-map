@@ -1,9 +1,10 @@
-import { Body, Controller, Req, Post, Delete, Get, Param, UseGuards, Patch } from '@nestjs/common';
+import { Body, Controller, Req, Post, Delete, Get, Param, UseGuards, Patch, Query } from '@nestjs/common';
 import { CreateMemoryDto } from "./dto/create-memory.dto";
 import { MemoryDto } from "./dto/memory.dto";
 import { MemoriesService}  from "./memories.service";
 import { UpdateMemoryDto } from "./dto/update-memory.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { GetMemoriesFilterDto } from "./dto/get-memories-filter.dto";
 
 @Controller('memories')
 export class MemoriesController {
@@ -14,6 +15,11 @@ export class MemoriesController {
     async create(@Body() createMemoryDto: CreateMemoryDto, @Req() req): Promise<MemoryDto> {
         const userId = req.user.id;
         return await this.memoriesService.createMemory(createMemoryDto, userId);
+    }
+
+    @Get('filter')
+    async getFilteredMemories(@Query() filterDto: GetMemoriesFilterDto): Promise<MemoryDto[]> {
+        return await this.memoriesService.getFilteredMemories(filterDto);
     }
 
     @UseGuards(JwtAuthGuard)
