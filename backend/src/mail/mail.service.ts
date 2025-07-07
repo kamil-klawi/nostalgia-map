@@ -29,7 +29,7 @@ export class MailService {
         const mailOptions: SendMailOptions = {
             from,
             to,
-            subject: 'Twoj kod weryfikacyjny',
+            subject: 'Verification code',
             html
         };
 

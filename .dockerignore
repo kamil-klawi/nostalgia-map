@@ -96,14 +96,21 @@ coverage/
 ### Containerization
 
 # Docker
+docker-compose.override.yml
 .docker/
 *.tar
 *.img
+Dockerfile.local
+docker-compose.local.yml
 **/docker-data/
 **/data-volume/
-!**/.dockerignore
+**/.dockerignore
 
 ### Others
+
+# Git
+.git
+.gitignore
 
 # OS-specific
 ehthumbs.db
