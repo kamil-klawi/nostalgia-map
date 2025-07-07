@@ -10,6 +10,7 @@ import { UpdateMemoryDto } from "./dto/update-memory.dto";
 import { MemoryDto } from "./dto/memory.dto";
 import { Reaction } from "./entity/reaction.entity";
 import { User } from "../users/entity/user.entity";
+import { GetMemoriesFilterDto } from "./dto/get-memories-filter.dto";
 
 @Injectable()
 export class MemoriesService {
@@ -147,5 +148,40 @@ export class MemoriesService {
 
         this.logger.log('Remove reaction');
         await this.reactionRepository.remove(existingReaction);
+    }
+
+    async getFilteredMemories(filterDto: GetMemoriesFilterDto): Promise<MemoryDto[]> {
+        const { categoryId, sort } = filterDto;
+        const query = this.memoryRepository.createQueryBuilder('memory')
+            .leftJoinAndSelect('memory.user', 'user')
+            .leftJoinAndSelect('memory.category', 'category')
+            .leftJoinAndSelect('memory.reactions', 'reaction');
+
+        if (categoryId) {
+            query.andWhere('category.id = :categoryId', { categoryId });
+        }
+
+        if (sort) {
+            switch (sort) {
+                case 'newest':
+                    query.orderBy('memory.createdAt', 'DESC');
+                    break;
+                case 'oldest':
+                    query.orderBy('memory.createdAt', 'ASC');
+                    break;
+                case 'popular':
+                    query
+                        .loadRelationCountAndMap('memory.likeCount', 'memory.reactions')
+                        .orderBy('memory.createdAt', 'DESC');
+                    break;
+            }
+        } else {
+            query.orderBy('memory.createdAt', 'DESC');
+        }
+
+        const memories = await query.getMany();
+        return memories.map(memory => plainToInstance(MemoryDto, memory, {
+            excludeExtraneousValues: true,
+        }))
     }
 }
