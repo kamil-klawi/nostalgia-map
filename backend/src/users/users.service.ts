@@ -81,4 +81,8 @@ export class UsersService {
             excludeExtraneousValues: true,
         });
     }
+
+    async save(user: User): Promise<User> {
+        return this.usersRepository.save(user);
+    }
 }
