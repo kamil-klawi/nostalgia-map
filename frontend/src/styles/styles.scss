@@ -1,1 +1,43 @@
 @forward "base/index";
+@use './base/colors' as *;
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content h1,
+.leaflet-popup-content h2,
+.leaflet-popup-content h3,
+.leaflet-popup-content h4,
+.leaflet-popup-content h5,
+.leaflet-popup-content h6,
+.leaflet-popup-content p,
+.leaflet-popup-content span,
+.leaflet-popup-content div {
+  margin: 0.25rem !important;
+  color: $light-green !important;
+}
+
+.leaflet-popup-content p {
+  color: $green !important;
+
+  &:nth-of-type(even) {
+    color: $light-green !important;
+  }
+}
+
+.leaflet-popup-content span {
+  color: $light-green !important;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0.5rem !important;
+  border-radius: 0.5rem;
+  background: $dark-green !important;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-tip {
+  background: $dark-green !important;
+}
