@@ -47,20 +47,28 @@
 
 ## 🛠️ Technologies used
 
-| Category          | Tool       | Purpose                                                |
-|-------------------|------------|--------------------------------------------------------|
-| Backend           | NestJS     | Framework for building API                             |
-| Backend           | Typescript | Typed JavaScript                                       |
-| Backend           | JWT        | Authentication with JSON Web Tokens                    |
-| Backend           | TypeORM    | ORM for database access                                |
-| Backend           | Nodemailer | Email sending                                          |
-| Backend           | Pug        | Template engine                                        |
-| Database          | PostgreSQL | Relational database                                    |
-| DevOps            | Docker     | Containerization                                       |
-| Development Tools | Typescript | Typed superset of JavaScript for better dev experience |
-| Development Tools | Eslint     | Linter for maintaining code quality                    |
-| Development Tools | Prettier   | Code formatter                                         |
-| Development Tools | Jest       | Testing framework                                      |
+| Category          | Tool        | Purpose                                                |
+|-------------------|-------------|--------------------------------------------------------|
+| Frontend          | Next        | Framework for building client side                     |
+| Frontend          | Shadcn/ui   | Component library                                      |
+| Frontend          | Leaflet     | Interactive maps library                               |
+| Frontend          | Axios       | HTTP client                                            |
+| Frontend          | dayjs       | Minimalist library for dates and times                 |
+| Frontend          | Sonner      | Toast component                                        |
+| Frontend          | TailwindCSS | CSS framework                                          |
+| Frontend          | Heroicons   | Hand-crafted SVG icons                                 |
+| Backend           | NestJS      | Framework for building API                             |
+| Backend           | Typescript  | Typed JavaScript                                       |
+| Backend           | JWT         | Authentication with JSON Web Tokens                    |
+| Backend           | TypeORM     | ORM for database access                                |
+| Backend           | Nodemailer  | Email sending                                          |
+| Backend           | Pug         | Template engine                                        |
+| Database          | PostgreSQL  | Relational database                                    |
+| DevOps            | Docker      | Containerization                                       |
+| Development Tools | Typescript  | Typed superset of JavaScript for better dev experience |
+| Development Tools | Eslint      | Linter for maintaining code quality                    |
+| Development Tools | Prettier    | Code formatter                                         |
+| Development Tools | Jest        | Testing framework                                      |
 
 ---
 
