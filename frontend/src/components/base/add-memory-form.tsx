@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -17,9 +19,16 @@ import { CreateMemorySchema } from '@/types/memory/create-memory';
 import api from '@/lib/axios';
 import { Form } from '@/components/ui/form';
 import { XCircleIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
 
 export function AddMemoryForm({ form }: AddMemoryFieldsProps) {
-  const token = localStorage.getItem('token');
+  const [open, setOpen] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
   async function onSubmit(data: z.infer<typeof CreateMemorySchema>) {
     try {
       await api.post('/memories/create', data, {
@@ -29,15 +38,23 @@ export function AddMemoryForm({ form }: AddMemoryFieldsProps) {
       });
       toast.success('Create new memory!');
       form.reset();
+      setOpen(false);
+      window.location.reload();
     } catch (error) {
       toast.error('Creating new memory failed. Please try again.');
     }
   }
 
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild className="w-1/4">
-        <Button variant="default">Add memory</Button>
+        <Button
+          className="w-1/10 h-12"
+          variant="default"
+          onClick={() => setOpen(true)}
+        >
+          Add memory
+        </Button>
       </DialogTrigger>
       <DialogContent style={{ padding: '2rem' }}>
         <DialogHeader>
@@ -55,14 +72,14 @@ export function AddMemoryForm({ form }: AddMemoryFieldsProps) {
                 name={'latitude'}
                 label={'Latitude'}
                 placeholder={'Latitude'}
-                type={'number'}
+                type={'text'}
               />
               <FormFieldCustom
                 control={form.control}
                 name={'longitude'}
                 label={'Longitude'}
                 placeholder={'Longitude'}
-                type={'number'}
+                type={'text'}
               />
               <FormFieldCustom
                 control={form.control}
@@ -110,7 +127,7 @@ export function AddMemoryForm({ form }: AddMemoryFieldsProps) {
                 name={'categoryId'}
                 label={'Category id'}
                 placeholder={'Category id'}
-                type={'number'}
+                type={'text'}
                 description={
                   'Not required, but you can provide it for better experience.'
                 }
@@ -118,7 +135,7 @@ export function AddMemoryForm({ form }: AddMemoryFieldsProps) {
             </div>
             <DialogFooter style={{ padding: '1rem 0' }}>
               <DialogClose asChild>
-                <Button variant="outline">
+                <Button variant="outline" onClick={() => setOpen(false)}>
                   <XCircleIcon /> Cancel
                 </Button>
               </DialogClose>
