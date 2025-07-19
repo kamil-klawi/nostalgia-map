@@ -12,12 +12,15 @@ export interface CreateMemory {
 }
 
 export const CreateMemorySchema = z.object({
-  latitude: z.number(),
-  longitude: z.number(),
+  latitude: z.string().transform((val) => parseFloat(val)),
+  longitude: z.string().transform((val) => parseFloat(val)),
   city: z.string(),
   country: z.string(),
   title: z.string(),
   description: z.string().optional(),
   photoUrl: z.array(z.string()).optional(),
-  categoryId: z.number().optional(),
+  categoryId: z
+    .string()
+    .transform((val) => parseInt(val))
+    .optional(),
 });
