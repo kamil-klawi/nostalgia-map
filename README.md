@@ -23,24 +23,25 @@
 
 ## 📡 API
 
-| Endpoint                                     | Method | Description                 |
-|----------------------------------------------|--------|-----------------------------|
-| `/auth/register`                             | POST   | Register a new user         |
-| `/auth/verify-code`                          | POST   | Verify authentication code  |
-| `/auth/login`                                | POST   | User login                  |
-| `/memories/create`                           | POST   | Create a new memory entry   |
-| `/memories/:id`                              | PATCH  | Update an existing memory   |
-| `/memories/:id`                              | DELETE | Delete a memory             |
-| `/memories`                                  | GET    | Retrieve all memories       |
-| `/memories/:id`                              | GET    | Retrieve a specific memory  |
-| `/memories/:id/like`                         | POST   | Like a memory               |
-| `/memories/:id/like`                         | DELETE | Remove a like from a memory |
-| `/memories/filter?categoryId=:id&sort=name`  | GET    | Filter and sort memories    |
-| `/users/:id/memories`                        | GET    | Retrieve memories of a user |
-| `/users/:id`                                 | GET    | Get user details            |
-| `/users/:id`                                 | PATCH  | Update user details         |
-| `/users/:id`                                 | DELETE | Delete a user               |
-| `/categories`                                | GET    | Get list of categories      |
+| Endpoint                                    | Method | Description                 |
+|---------------------------------------------|--------|-----------------------------|
+| `/auth/register`                            | POST   | Register a new user         |
+| `/auth/verify-code`                         | POST   | Verify authentication code  |
+| `/auth/login`                               | POST   | User login                  |
+| `/memories/create`                          | POST   | Create a new memory entry   |
+| `/memories/:id`                             | PATCH  | Update an existing memory   |
+| `/memories/:id`                             | DELETE | Delete a memory             |
+| `/memories`                                 | GET    | Retrieve all memories       |
+| `/memories/:id`                             | GET    | Retrieve a specific memory  |
+| `/memories/:id/like`                        | POST   | Like a memory               |
+| `/memories/:id/like`                        | DELETE | Remove a like from a memory |
+| `/memories/liked`                           | GET    | Retrieve all liked memories |
+| `/memories/filter?categoryId=:id&sort=name` | GET    | Filter and sort memories    |
+| `/users/:id/memories`                       | GET    | Retrieve memories of a user |
+| `/users/:id`                                | GET    | Get user details            |
+| `/users/:id`                                | PATCH  | Update user details         |
+| `/users/:id`                                | DELETE | Delete a user               |
+| `/categories`                               | GET    | Get list of categories      |
 
 ---
 
