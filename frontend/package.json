@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e ../.env.development -- bash -c 'next dev -p $CLIENT_PORT'",
+    "dev": "dotenv -e ../.env.development -- sh -c 'next dev -p $CLIENT_PORT'",
     "build": "next build",
-    "start": "dotenv -e ../.env -- bash -c 'next start -p $CLIENT_PORT'",
+    "start": "dotenv -e ../.env -- sh -c 'next start -p $CLIENT_PORT'",
     "lint": "next lint"
   },
   "dependencies": {

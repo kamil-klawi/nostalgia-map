@@ -1,4 +1,19 @@
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.local
+    container_name: frontend
+    env_file:
+      - .env.development
+    ports:
+      - '${CLIENT_PORT}:${CLIENT_PORT}'
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    command: ['pnpm', 'dev']
+
   backend:
     build:
       context: ./backend
