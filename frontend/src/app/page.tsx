@@ -6,10 +6,11 @@ import { Filter } from '@/components/custom/filter';
 import { Memory } from '@/types/memory/memory';
 import api from '@/lib/axios';
 import { AddMemoryForm } from '@/components/base/add-memory-form';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateMemorySchema } from '@/types/memory/create-memory';
+import styles from '@/styles/page/home.module.scss';
 
 const Map = dynamic(() => import('@/components/custom/map'), { ssr: false });
 
@@ -32,12 +33,10 @@ export default function Home() {
   });
 
   return (
-    <main>
-      <div className="flex items-end justify-center h-fit m-0 gap-4">
+    <main className={styles.main}>
+      <div className={styles.container}>
         <Filter onFiltered={setMemories} />
-        <div className="w-1/3">
-          <AddMemoryForm form={form} />
-        </div>
+        <AddMemoryForm form={form} />
       </div>
       <Map memories={memories} />
     </main>

@@ -1,0 +1,39 @@
+@use '../base/colors' as *;
+
+.navbar {
+  @apply w-full h-[8dvh] flex items-center justify-between;
+  background: $dark-green;
+  padding: 0 2rem;
+
+  &__brand {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: $white;
+    font-family: "Geist", sans-serif;
+  }
+
+  &__list {
+    @apply flex items-center justify-center;
+  }
+
+  &__item {
+    @apply list-none;
+    padding: 0 1rem;
+  }
+
+  &__link {
+    font-size: 0.975rem;
+    font-weight: 400;
+    color: $light-green;
+    font-family: "Geist", sans-serif;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: color 0.3s, text-decoration-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+      text-decoration-color: $white;
+    }
+  }
+}

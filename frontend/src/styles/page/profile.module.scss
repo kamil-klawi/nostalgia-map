@@ -1,9 +1,13 @@
+@use '../base/colors' as *;
+
 .main {
   @apply flex items-center justify-center h-screen;
   margin: 0;
+  background: $lighter-green;
 
   .container {
-    @apply max-w-[48rem] w-full h-screen;
+    @apply max-w-[56rem] w-full h-screen;
+    background: $white;
 
     &__memories {
       @apply flex flex-col items-start justify-start;
@@ -16,7 +20,7 @@
           font-size: 0.875rem;
           font-weight: 700;
           font-family: "Geist", sans-serif;
-          color: gray;
+          color: $green;
         }
 
         &__list {
@@ -28,7 +32,7 @@
             @apply max-w-[24rem] min-w-[16rem] w-full;
             border-radius: 0.5rem;
             padding: 0.5rem 1rem;
-            background: cadetblue;
+            background: $dark-green;
 
             .memory__location,
             .memory__title,
@@ -39,8 +43,8 @@
               @apply w-fit;
               font-family: "Geist", sans-serif;
               font-size: 0.875rem;
-              font-weight: 700;
-              color: black;
+              font-weight: 400;
+              color: $light-green;
               padding: 0.5rem 0;
             }
 
@@ -48,8 +52,8 @@
             .memory__category,
             .memory__description {
               font-size: 0.975rem;
-              font-weight: 400;
               padding: 0.25rem 0 0.75rem;
+              color: $green;
             }
 
             .memory__title {
@@ -80,6 +84,7 @@
           font-size: 2rem;
           font-weight: 400;
           font-family: "Geist", sans-serif;
+          color: $dark-green;
         }
 
         &__bio {
@@ -88,7 +93,7 @@
           .bio__title {
             font-size: 0.875rem;
             font-weight: 700;
-            color: gray;
+            color: $green;
             font-family: "Geist", sans-serif;
           }
 
@@ -96,7 +101,7 @@
             padding: 0.5rem 0;
             font-size: 0.975rem;
             font-weight: 400;
-            color: black;
+            color: $dark-green;
             font-family: "Geist", sans-serif;
           }
         }
