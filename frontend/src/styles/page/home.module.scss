@@ -1,0 +1,13 @@
+@use '../base/colors' as *;
+
+.main {
+  @apply flex flex-col items-center justify-center h-screen;
+  margin: 0;
+  background: $lighter-green;
+
+  .container {
+    @apply w-full flex flex-row items-center justify-between;
+    padding: 1rem 2rem;
+    background: $white;
+  }
+}
